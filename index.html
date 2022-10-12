@@ -24,19 +24,34 @@
 						
 							<div class="field">
 								<label class = "label" >Sporgenza [ mm ]</label> 	
-								<input class = "input"  id = "length" type="text" name="length">
+								<input class = "input"  id = "length" type="text" >
 							</div>
 							<div class="field">
 								<label class = "label" >Interasse [ mm ]</label> 	
-								<input class = "input" id = "spacing" type="text" name="spacing">
+								<input class = "input" id = "spacing" type="text">
 							</div>
 							<div class = "field">
 								<label class = "label" >Carico [ kPa ]</label> 					
-								<input class = "input" id = "load" type="text" name="load">
+								<input class = "input" id = "load" type="text">
 							</div>
 							<div class = "field">
-								<label class = "label" >Wx [ cm^3 ]</label> 						
-								<input class = "input" id = "modulus" type="text" name="modulus">
+								<label class = "label" >Momento d'inerzia: Ix [ cm^4 ]</label> 						
+								<input class = "input" id = "momentOfInertia" type="text">
+							</div>
+							<div class = "field">
+								<label class = "label" >Modulo di resistenza: Wx [ cm^3 ]</label> 						
+								<input class = "input" id = "modulus" type="text">
+							</div>
+							<div class = "field">
+								<label class = "label" >Freccia limite [ mm ]</label> 						
+								<div class = "select"  type="text">
+									<select id = "select">
+									  <option value="150">L/150</option>
+									  <option value="200">L/200</option>
+									  <option value="300">L/300</option>
+									</select>
+									
+								  </div>
 							</div>
 					</div>	
 			</div>
@@ -52,8 +67,11 @@
 
 		<section class = "section">
 					<div class ="container">
-							<div class="notification is-warning">
-									<h1 class="title">Modulo resistente minimo: <span id = "output" >...</span> cm^3</h1>
+							<div class="notification">
+									<!-- <h3 class="title"> freccia calcolata: <span id = "actualDeflection" > </span> mm</h3>							
+									<h3 class="title">freccia ammissibile: <span id = "allowableDeflection" > </span> mm</h3> -->
+									<h3 class="title">Verifica: <span id = "outputString" ></span></h3>
+
 									<p>NOTE:</p>
 									<ul>
 										<li>Lega Alluminio: EN AW 6060-T6 (fo = 140 MPa)</li>
@@ -64,6 +82,6 @@
 					</div>
 		</section>
 	
-		<script src=".\src\tables.js"></script>	
+		<script src=".\src\main.js"></script>	
 	</body>
 </html>
