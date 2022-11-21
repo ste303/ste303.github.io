@@ -24,90 +24,50 @@ function AllowableDeflection(){
 }
 
 function ActualDeflection(){
-  let IX = document.getElementById("momentOfInertia").value * 10**4; //mm
   let load = (document.getElementById('load').value); // N/mm^2
   let beamSpacing = (document.getElementById('spacing').value)/1000; // m
   let beamLenght = document.getElementById('length').value;
-  let result = (5/384) * (load * beamSpacing) * beamLenght**4 /(aluminumElasticModulus * IX);
-  console.log(result);
-  return result;
+  const Ix_reinforce = 1121190;  // mm**4
+  let isReinforced = document.getElementById('isReinforced').checked;
+  console.log(isReinforced);
+  if(!isReinforced){
+    let Ix_beam = document.getElementById("momentOfInertia").value * 10**4; //mm
+  return (5/384) * (load * beamSpacing) * beamLenght**4 /(aluminumElasticModulus * Ix_beam);
+  } else {
+    let Ix_beam = document.getElementById("momentOfInertia").value * 10**4; //mm
+    Ix_beam = Ix_beam + Ix_reinforce;
+    return (5/384) * (load * beamSpacing) * beamLenght**4 /(aluminumElasticModulus * Ix_beam);
+  }
+}
+
+function checkResistance(){
+
 }
 
 calcola.onclick = function () {
   let beamLenght = document.getElementById('length').value;
   let beamSpacing = document.getElementById('spacing').value;
   let load = document.getElementById('load').value;
-  let calcola = document.getElementById('calcola');
+  //let calcola = document.getElementById('calcola');
 	let output = minSectionModulus(beamLenght, beamSpacing, load/1000 , 140);
   output =  mm3TOcm3(output).toFixed(2);
   let allowableDeflection = AllowableDeflection();
   let actualDeflection = ActualDeflection();
+  // prepara la stringa di output
   let equationSign = actualDeflection < allowableDeflection ? "<" : ">" ;
-  let ouputString = `freccia calcolata (${actualDeflection.toFixed(1)} mm) ${equationSign} freccia ammissibile (${allowableDeflection.toFixed(1)} mm)`;
-  console.log(ouputString);
-  /*
-  document.getElementById('actualDeflection').innerText = actualDeflection.toFixed(1); 
-	document.getElementById('allowableDeflection').innerText = allowableDeflection.toFixed(1);
-  */
-  document.getElementById('outputString').innerText = ouputString;
+  let ouputString = `freccia calcolata: ${actualDeflection.toFixed(1)} mm ${equationSign} freccia ammissibile: ${allowableDeflection.toFixed(1)} mm`;
   
-
-	//console.log(output); allowableDeflection
+  
+  // stampa il risultato
+  document.getElementById('outputString').innerText = ouputString;
  
 }
 
-// number.toString()   Number("384.75")
-
-/*
-let beamLength = range(1000, 5000, 500);
-let beamSpacing = range(600, 1200, 100);
-
-for (lenght of beamLength) {
-	for (spacing of beamSpacing) {
-		tableModulus = 
-	}
+info.onclick = function () {
+  console.log('funziona');
+  alert(`
+        Il rinforzo considerato è un:
+        tubo rettangolare 50x100 spessore 3 mm;
+        Ix = 112.11 cm^4;
+        lega di alluminio EN AW 6060-T6.`);
 }
-
-for (var i = Things.length - 1; i >= 0; i--) {
-	Things[i]
-}
-*/
-
-/*
-
-let table = document.querySelector("table");
-let data = Object.keys(mountains[0]);
-
-let mountains = [
-  { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-  { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-  { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-  { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-  { name: "Monte Amiata", height: 1738, place: modulus}
-];
-
-function createTableHead(table) {
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  for (let key of data){
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-}
-
-function createTable(table, data){
-  for (let element of data) {
-    let row = table.insertRow();
-    for (key in element){
-      let cell = row.insertCell();
-      let text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-    }
-  }
-}
-
-createTable(table, mountains);
-createTableHead(table);
-*/
