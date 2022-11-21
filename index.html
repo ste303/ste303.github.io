@@ -14,7 +14,7 @@
 
 		<section class="hero">
 			<div class="hero-body">
-				<h1 class="title is-size-2 "> Cappeller Eng.  - Calcolo Puntoni</h1>
+				<h1 class="title is-size-2 "> Stameat s.r.l.  - Calcolo Puntoni</h1>
 			</div>
 		</section>
 
@@ -34,25 +34,47 @@
 								<label class = "label" >Carico [ kPa ]</label> 					
 								<input class = "input" id = "load" type="text">
 							</div>
-							<div class = "field">
-								<label class = "label" >Momento d'inerzia: Ix [ cm^4 ]</label> 						
-								<input class = "input" id = "momentOfInertia" type="text">
-							</div>
-							<div class = "field">
-								<label class = "label" >Modulo di resistenza: Wx [ cm^3 ]</label> 						
-								<input class = "input" id = "modulus" type="text">
-							</div>
-							<div class = "field">
-								<label class = "label" >Freccia limite [ mm ]</label> 						
-								<div class = "select"  type="text">
-									<select id = "select">
-									  <option value="150">L/150</option>
-									  <option value="200">L/200</option>
-									  <option value="300">L/300</option>
-									</select>
-									
-								  </div>
-							</div>
+							<div class="level">
+								<div class="level-left">
+									<div class="level-item">
+										<div class = "field">
+										<label class = "label" >Momento d'inerzia: Ix [ cm^4 ]</label> 						
+										<input class = "input" id = "momentOfInertia" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="level-item">
+										<div class = "field">
+											<label class = "label" >Modulo di resistenza: Wx [ cm^3 ]</label> 						
+											<input class = "input" id = "modulus" type="text">
+										</div>
+								</div>
+							</div>								
+										<div class = "field">
+											<label class = "label" >Freccia limite [ mm ]</label> 						
+													<div class = "select"  type="text">
+														<select id = "select">
+														<option value="200">L/200</option>
+														<option value="150">L/150</option>
+														<option value="300">L/300</option>
+														</select>
+													</div>
+										</div>
+								<div class="level">									
+									<div class="level-item level-left">
+										<div class = "field">
+											<label class="checkbox">
+												<input type="checkbox" id="isReinforced">
+												Aggiungere rinforzo
+											</label>										  
+										</div>
+									</div>
+									<div class="level-item level-left">
+										<div class = "field">
+											<button id="info" class = "button is-info is-rounded ">info rinforzo</button>
+										</div>
+									</div>
+								</div>
 					</div>	
 			</div>
 			<div class="container">
@@ -68,16 +90,17 @@
 		<section class = "section">
 					<div class ="container">
 							<div class="notification">
-									<!-- <h3 class="title"> freccia calcolata: <span id = "actualDeflection" > </span> mm</h3>							
-									<h3 class="title">freccia ammissibile: <span id = "allowableDeflection" > </span> mm</h3> -->
-									<h3 class="title">Verifica: <span id = "outputString" ></span></h3>
-
-									<p>NOTE:</p>
-									<ul>
-										<li>Lega Alluminio: EN AW 6060-T6 (fo = 140 MPa)</li>
-										<li>Calcolo secondo Eurocodice 9</li>
-										<li>Controllare la freccia max</li>
-									</ul> 	
+									<h4 class="title is-size-4">Verifica della freccia</h4>
+									<h4 class="title is-size-4"><span id = "outputString" ></span></h4>
+									<div class="notification">
+										<!-- <button class="delete"></button> -->
+										<ul>
+											<li>Lega Alluminio: EN AW 6060-T6 (fo = 140 MPa)</li>
+											<li>Calcolo secondo Eurocodice 9</li>
+											<li>Controllare la freccia max</li>
+										</ul> 
+									  </div>
+								
 							</div>
 					</div>
 		</section>
