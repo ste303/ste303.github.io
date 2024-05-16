@@ -9,7 +9,7 @@ document.getElementById("modulus").value = 44.9;
 // }
 function openWindow() {
   var windowFeatures = "width=600,height=900,scrollbars=yes,resizable=yes";
-  var url = "tubesProp.html";
+  var url = "https://ste303.github.io/tubesProp.html";
   var newWindow = window.open(url, "New Window", windowFeatures);
 }
 
